@@ -229,7 +229,8 @@ This will create a LoadBalancer service in the `nginx` namespace to allow extern
 
 Starting from this point, you will need to create credentials for Fluentum dependencies. This repository provide example scripts to create credentials for Fluentum dependencies. You can choose to use the example scripts or create credentials manually.
 
-First edit [`credential.sh`](./scripts/credentail.sh) and update the credentials with your own credentials and domain name. 
+![CAUTION]
+> Make sure to edit [`credential.sh`](./script/credential.sh) to update the passwords and domain before running the scripts.
 
 ![NOTE]
 > This repository used kustomize to install some of Fluentum dependencies.
@@ -248,8 +249,8 @@ Check if Kubegres PostgreSQL Operator is installed successfully:
 kubectl get pods -n kubegres-system
 ```
 
-![IMPORTANT]
-> Make sure to update PostgreSQL credential in [`credential.sh`](./scripts/credentail.sh) before installing PostgreSQL.
+![CAUTION]
+> Make sure to update PostgreSQL credential in [`credential.sh`](./script/credential.sh) before installing PostgreSQL.
 
 Create PostgreSQL credential
 
@@ -297,8 +298,8 @@ curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/dow
 ![NOTE]
 > By default, Prometheus don't have authentication. In this repository, we use Basic Auth in NGINX Ingress Controller to provide authentication for Prometheus. 
 
-![IMPORTANT]
-> Make sure to update Prometheus credential in [`credential.sh`](./scripts/credential.sh) before installing Prometheus.
+![CAUTION]
+> Make sure to update Prometheus credential in [`credential.sh`](./script/credential.sh) before installing Prometheus.
 
 ![IMPORTANT]
 > Make sure to update Prometheus domain name in [`prometheus/prometheus-ingress.yaml`](./prometheus/prometheus-ingress.yaml) before installing Prometheus.
@@ -329,8 +330,8 @@ open https://prometheus.example.com
 
 ## Grafana
 
-![IMPORTANT]
-> Make sure to update Grafana credential in [`credential.sh`](./scripts/credential.sh) before installing Grafana.
+![CAUTION]
+> Make sure to update Grafana credential in [`credential.sh`](./script/credential.sh) before installing Grafana.
 
 ![IMPORTANT]
 > Make sure to update Grafana domain name in [`grafana/grafana-ingress.yaml`](./grafana/grafana-ingress.yaml) before installing Grafana.
@@ -338,9 +339,11 @@ open https://prometheus.example.com
 ![IMPORTANT]
 > Make sure to update Grafana root URL and Postgres credential in [`grafana/grafana-ini.yaml`](./grafana/grafana-ini.yaml) before installing Grafana.
 
-Database section in [`grafana/grafana-ini.yaml`](./grafana/grafana-ini.yaml) should look like this:
+Root URL and database section in [`grafana/grafana-ini.yaml`](./grafana/grafana-ini.yaml) should look like this:
 
 ```yaml
+    root_url = https://grafana.example.com
+
     type = postgres
     host = fluentum-postgres:5432   # Use postgres service name only, since Grafana is deployed in the same namespace as PostgreSQL
     name = grafana
@@ -420,6 +423,12 @@ kubectl get pods -n elastic-system
 
 ## Elasticsearch
 
+![CAUTION]
+> Make sure to update Elasticsearch credential in [`credential.sh`](./script/credential.sh) before installing Elasticsearch.
+
+![IMPORTANT]
+> Make sure to update Elasticsearch domain name in [`elasticsearch/elasticsearch-ingress.yaml`](./elasticsearch/elasticsearch-ingress.yaml) before installing Elasticsearch.
+
 Create Elasticsearch credential
 
 ```bash
@@ -445,6 +454,12 @@ open https://elasticsearch.example.com
 ```
 
 ## Kibana
+
+![CAUTION]
+> Make sure to update Elastic anonymoys credential in [`credential.sh`](./script/credential.sh) before installing Kibana.
+
+![IMPORTANT]
+> Make sure to update Kibana domain name in [`kibana/kibana-ingress.yaml`](./kibana/kibana-ingress.yaml) before installing Kibana.
 
 Create anonymous dashboard user in Elasticsearch and Index Lifecycle Policy.
 

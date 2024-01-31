@@ -229,10 +229,10 @@ This will create a LoadBalancer service in the `nginx` namespace to allow extern
 
 Starting from this point, you will need to create credentials for Fluentum dependencies. This repository provide example scripts to create credentials for Fluentum dependencies. You can choose to use the example scripts or create credentials manually.
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to edit [`credential.sh`](./script/credential.sh) to update the passwords and domain before running the scripts.
 
-![NOTE]
+> [!NOTE]
 > This repository used kustomize to install some of Fluentum dependencies.
 
 ## PostgreSQL
@@ -249,7 +249,7 @@ Check if Kubegres PostgreSQL Operator is installed successfully:
 kubectl get pods -n kubegres-system
 ```
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to update PostgreSQL credential in [`credential.sh`](./script/credential.sh) before installing PostgreSQL.
 
 Create PostgreSQL credential
@@ -285,7 +285,7 @@ You will be prompted to enter password. Use the password that you created in the
 
 Install Prometheus Operator using following command from [Prometheus Operator docs](https://prometheus-operator.dev/docs/user-guides/getting-started/#installing-the-operator):
 
-![NOTE]
+> [!NOTE]
 > Following command will install Prometheus Operator in `default` namespace. You can choose to install Prometheus Operator in a separate namespace if you want. If you choose to install Prometheus Operator in a separate namespace, you will need to update the bundle.yaml file accordingly.
 
 ```bash
@@ -295,13 +295,13 @@ curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/dow
 
 ## Prometheus
 
-![NOTE]
+> [!NOTE]
 > By default, Prometheus don't have authentication. In this repository, we use Basic Auth in NGINX Ingress Controller to provide authentication for Prometheus. 
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to update Prometheus credential in [`credential.sh`](./script/credential.sh) before installing Prometheus.
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update Prometheus domain name in [`prometheus/prometheus-ingress.yaml`](./prometheus/prometheus-ingress.yaml) before installing Prometheus.
 
 Create Prometheus credential
@@ -330,13 +330,13 @@ open https://prometheus.example.com
 
 ## Grafana
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to update Grafana credential in [`credential.sh`](./script/credential.sh) before installing Grafana.
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update Grafana domain name in [`grafana/grafana-ingress.yaml`](./grafana/grafana-ingress.yaml) before installing Grafana.
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update Grafana root URL and Postgres credential in [`grafana/grafana-ini.yaml`](./grafana/grafana-ini.yaml) before installing Grafana.
 
 Root URL and database section in [`grafana/grafana-ini.yaml`](./grafana/grafana-ini.yaml) should look like this:
@@ -353,7 +353,7 @@ Root URL and database section in [`grafana/grafana-ini.yaml`](./grafana/grafana-
     ssl_mode = disable
 ```
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update `GF_SECURITY_X_FRAME_OPTIONS` in [`grafana/grafana.yaml`](./grafana/grafana.yaml) with Fluentum UI domain before installing Grafana.
 
 Create Grafana credential
@@ -423,10 +423,10 @@ kubectl get pods -n elastic-system
 
 ## Elasticsearch
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to update Elasticsearch credential in [`credential.sh`](./script/credential.sh) before installing Elasticsearch.
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update Elasticsearch domain name in [`elasticsearch/elasticsearch-ingress.yaml`](./elasticsearch/elasticsearch-ingress.yaml) before installing Elasticsearch.
 
 Create Elasticsearch credential
@@ -455,10 +455,10 @@ open https://elasticsearch.example.com
 
 ## Kibana
 
-![CAUTION]
+> [!CAUTION]
 > Make sure to update Elastic anonymoys credential in [`credential.sh`](./script/credential.sh) before installing Kibana.
 
-![IMPORTANT]
+> [!IMPORTANT]
 > Make sure to update Kibana domain name in [`kibana/kibana-ingress.yaml`](./kibana/kibana-ingress.yaml) before installing Kibana.
 
 Create anonymous dashboard user in Elasticsearch and Index Lifecycle Policy.

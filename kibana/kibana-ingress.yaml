@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - kibana.example.com
+    secretName: fluentum-tls
+  rules:
+  - host: kibana.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: fluentum-kb-http
+            port:
+              number: 5601

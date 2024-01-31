@@ -1,0 +1,21 @@
+apiVersion: kubegres.reactive-tech.io/v1
+kind: Kubegres
+metadata:
+  name: fluentum-postgres
+  namespace: fluentum
+spec:
+   replicas: 3
+   image: postgres:16.1
+   database:
+      size: 200Mi
+   env:
+      - name: POSTGRES_PASSWORD
+        valueFrom:
+           secretKeyRef:
+              name: postgresql-credentials
+              key: superUserPassword
+      - name: POSTGRES_REPLICATION_PASSWORD
+        valueFrom:
+           secretKeyRef:
+              name: postgresql-credentials
+              key: replicationUserPassword

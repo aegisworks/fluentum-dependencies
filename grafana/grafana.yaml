@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: fluentum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: grafana
+  template:
+    metadata:
+      labels:
+        name: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: fluentumregistry/grafana:10.2.3
+          env:
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-credentials
+                  key: admin-password
+            - name: GF_SECURITY_ALLOW_EMBEDDING
+              value: "true"
+            - name: GF_SECURITY_X_FRAME_OPTIONS
+              value: "ALLOW-FROM https://app.example.com" # this is the URL of the frontend
+          ports:
+            - name: grafana
+              containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - name: grafana-data
+              mountPath: /var/lib/grafana
+            - name: grafana-logs
+              mountPath: /var/log/grafana
+            - name: grafana-ini
+              mountPath: /etc/grafana
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      volumes:
+        - name: grafana-data
+          emptyDir: {}
+        - name: grafana-logs
+          emptyDir: {}
+        - name: grafana-ini
+          configMap:
+            name: grafana-ini
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  labels:
+    app: fluentum
+spec:
+  ports:
+    - name: grafana
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    name: grafana
+  type: ClusterIP

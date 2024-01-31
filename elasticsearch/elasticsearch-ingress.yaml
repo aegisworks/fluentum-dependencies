@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: elasticsearch-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/proxy-body-size: "64m"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - elasticsearch.example.com
+    secretName: fluentum-tls
+  rules:
+  - host: elasticsearch.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: fluentum-es-http
+            port:
+              number: 9200

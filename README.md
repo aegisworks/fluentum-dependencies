@@ -3,7 +3,8 @@
 This repository contains guide and example scripts for installing Fluentum control plane dependencies in a Kubernetes cluster. 
 
 > [!NOTE]
-> This repository is not intended to be the only way to install Fluentum control plane dependencies, but rather an option for those who want to use Kubernetes. You are free to install Fluentum dependencies in VM or use managed services.
+> This repository is not intended to be the only way to install Fluentum control plane dependencies, but rather an example for those who want to use Kubernetes. You are free to install Fluentum dependencies in VM or use managed services.
+> Also note that you are free to use any other Kubernetes resources to install Fluentum dependencies. This repository uses Helm and Operator to install dependencies. You can use other tools or resources to install dependencies.
 
 ## Dependencies
 

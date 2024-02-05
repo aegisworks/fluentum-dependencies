@@ -63,7 +63,7 @@ Cert-manager support multiple TLS certificate issuers. You can choose to use Let
 
 List of supported DNS providers can be found in [cert-manager documentation](https://cert-manager.io/docs/configuration/acme/dns01/).
 
-Before deploying cluster issuer, you need to create TLS certificate private key secret:
+Before deploying cluster issuer, you need to create secrets for DNS provider credentials. Following is example of creating DigitalOcean credentials secret for cert-manager:
 ```bash
 kubectl apply -f - <<EOF
 apiVersion: v1

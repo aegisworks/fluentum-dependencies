@@ -10,6 +10,7 @@ This repository contains guide and example scripts for installing Fluentum contr
 
 Fluentum requires the following dependencies:
 
+1. Kubernetes cluster. You can use any Kubernetes cluster, including managed Kubernetes services like GKE, EKS, AKS, or DigitalOcean Kubernetes. For local development, you can use [Kind](https://kind.sigs.k8s.io/).
 1. TLS certificate for Ingress Controller that covers all the domains Fluentum will use. This repository contains deployment of [cert-manager](https://cert-manager.io/docs/) to provision TLS certificates from [Let's Encrypt](https://letsencrypt.org/).
 1. DNS records for the domains Fluentum will use. This repository contains deployment of [external-dns](https://github.com/kubernetes-sigs/external-dns) to manage DNS records.
 1. Ingress Controller. This repository contains deployment of [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/). Ingress  Controller is used to route traffic to the Fluentum components.
@@ -57,3 +58,11 @@ See  [installation guide](INSTALL.md) for instructions on how to install depende
 ## Uninstallation
 
 See  [uninstallation guide](UNINSTALL.md) for instructions on how to uninstall dependencies.
+
+## Kind Cluster
+
+This repository contains a script to create a Kind cluster with Fluentum dependencies installed. See [KinD guide](KIND.md) for instructions on how to create a KinD cluster. You will need a machine with Docker installed to create a KinD cluster and minimum 16GB of RAM. If you use WSL on Windows, you will need to install Docker Desktop and enable WSL 2 and minimum 32GB of RAM.
+
+## Docker Compose
+
+This repository contains a script to create a Docker Compose setup with Fluentum dependencies installed. See [Docker Compose guide](DOCKER-COMPOSE.md) for instructions on how to create a Docker Compose setup. You will need a machine with Docker installed to create a Docker Compose setup. 

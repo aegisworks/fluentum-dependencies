@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: fluentum
+
+resources:
+- ../grafana/grafana-credentials.yaml
+- ../grafana/grafana-ini.yaml
+- ../grafana/grafana-local.yaml
+- ../grafana/grafana-ingress-local.yaml

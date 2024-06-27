@@ -1,0 +1,11 @@
+server.publicBaseUrl: "https://kibana.example.com"
+xpack.security.sameSiteCookies: "None"
+xpack.security.authc.providers:
+  basic.basic1:
+    order: 0
+    hint: "For administrators"
+  anonymous.anonymous1:
+    order: 1
+    credentials:
+      username: "dviewer"
+      password: "changeme"

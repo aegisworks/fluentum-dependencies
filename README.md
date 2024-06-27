@@ -1,6 +1,6 @@
 # Fluentum Dependencies
 
-This repository contains guide and example scripts for installing Fluentum control plane dependencies in a Kubernetes cluster. 
+This repository contains guide and example scripts for installing Fluentum control plane dependencies in a Kubernetes cluster or Docker Compose setup. Fluentum control plane dependencies include PostgreSQL, Prometheus, Grafana, Elasticsearch, and Kibana. 
 
 > [!NOTE]
 > This repository is not intended to be the only way to install Fluentum control plane dependencies, but rather an example for those who want to use Kubernetes. You are free to install Fluentum dependencies in VM or use managed services.
